@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+.top-bar-base {
+	height: 60px;
+	width: auto;
+	background-color: #FFFFFF;
+	box-shadow: 0 -1px 9px 0 #909396;
+	z-index: -1;
+}
+
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	font-family: "Source Sans Pro";
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	font-family: "Source Sans Pro";
+	justify-content: space-around;
+}
+.flex-column {
+	display: flex;
+	flex-direction: column;
+	font-family: "Source Sans Pro";
+}
+.example-spacer {
+	flex: 1 1 auto;
+}
+#ws {
+	height: 24px;
+	width: 93px;
+	color: #636463;
+	font-size: 24px;
+	font-weight: 300;
+	line-height: 29px;
+	padding: 14px 20px;
+	font-family: 'Source Sans Pro';
+}

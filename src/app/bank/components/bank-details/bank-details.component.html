@@ -1,0 +1,19 @@
+<div class="wrapper">
+    <span>Bank Details</span>
+    <div *ngIf="(bankList$ | async) as bankDetails">
+      <div class="list">
+        <div class="flex-container">
+          <div class="question-text">
+            <span>{{bankDetails.bank_id}}:&nbsp;</span>
+            <span>{{bankDetails.bank_id}}</span>
+          </div>
+          
+          <div class="flex-column">
+            <span class="votes">{{bankDetails.bank_id}} Upvotes</span>
+            <span class="votes">{{bankDetails.bank_id}} Downvotes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="noData" class="no-data">No Data Found</div>
+  </div>

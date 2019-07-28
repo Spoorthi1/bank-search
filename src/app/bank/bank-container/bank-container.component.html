@@ -1,0 +1,5 @@
+<div>
+  <div *ngIf="(bankList$ | async) as bankList">
+    <app-bank-list [bankList]="bankList"></app-bank-list>
+  </div>
+</div>
