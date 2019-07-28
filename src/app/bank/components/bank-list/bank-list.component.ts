@@ -3,7 +3,7 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { Bank } from '../../models/bank';
 import { element } from '@angular/core/src/render3/instructions';
 import { Router, NavigationExtras } from '@angular/router';
-
+import {SelectionModel} from '@angular/cdk/collections';
 @Component({
   selector: 'app-bank-list',
   templateUrl: './bank-list.component.html',
@@ -12,9 +12,9 @@ import { Router, NavigationExtras } from '@angular/router';
 export class BankListComponent implements OnInit {
 
   constructor(private router: Router) { }
-
+  fbanks: any;
   ELEMENT_DATA: any[] = [];
-  displayedColumns: string[] = ['bankId', 'ifsc', 'branch', 'bankName', 'address'];
+  displayedColumns: string[] = ['select', 'bankId', 'ifsc', 'branch', 'bankName', 'address'];
   dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
   banks: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -40,6 +40,39 @@ export class BankListComponent implements OnInit {
       const url = '/bank-details/' + this.banks[index].ifsc;
       // this.bankEmitter.emit(this.banks[index]);
       this.router.navigate([url]);
+    }
+  }
+
+  saveFavorite($event, row) {
+    console.log(row);
+    if (localStorage.getItem('favorite-banks')) {
+      this.fbanks = JSON.parse(localStorage.getItem('favorite-banks'));
+      const index = this.fbanks.findIndex((fb) => fb.ifsc === row.ifsc);
+      if (index >= 0) {
+        this.fbanks.splice(index, 1);
+        localStorage.setItem('favorite-banks', JSON.stringify(this.fbanks));
+      } else {
+        this.fbanks.push(row);
+        localStorage.setItem('favorite-banks', JSON.stringify(this.fbanks));
+      }
+    } else {
+      this.fbanks = [];
+      this.fbanks.push(row);
+      localStorage.setItem('favorite-banks', JSON.stringify(this.fbanks));
+    }
+  }
+
+  isSelected(row) {
+    if (localStorage.getItem('favorite-banks')) {
+      const fbanks = JSON.parse(localStorage.getItem('favorite-banks'));
+      const index = fbanks.findIndex((fb) => fb.ifsc === row.ifsc);
+      if (index >= 0) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
     }
   }
 

@@ -1,4 +1,8 @@
 <div>
+  <div class="label">
+    Select each row to view the bank details. Click on checkbox to add to favorites.
+    (Please use logout button to clear local storage)
+  </div>
   <div *ngIf="(bankList$ | async) as bankList">
     <app-bank-list [bankList]="bankList"></app-bank-list>
   </div>

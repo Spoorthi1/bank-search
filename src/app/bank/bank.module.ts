@@ -5,7 +5,7 @@ import { BankContainerComponent } from './bank-container/bank-container.componen
 import { BankDetailsComponent } from './components/bank-details/bank-details.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -13,7 +13,8 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     MatTableModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCheckboxModule,
   ],
   declarations: [BankListComponent, BankContainerComponent, BankDetailsComponent]
 })
