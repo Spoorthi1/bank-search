@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bank-search';
+
+  /* Removes the favorites stored in local storage*/
   clearLocalStorage() {
     localStorage.removeItem('favorite-banks');
   }

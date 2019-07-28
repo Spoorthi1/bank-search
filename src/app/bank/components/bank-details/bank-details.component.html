@@ -1,16 +1,17 @@
 <div class="wrapper">
-    <span>Bank Details</span>
+    <span class="label">Bank Details</span>
     <div *ngIf="(bankList$ | async) as bankDetails">
       <div class="list">
         <div class="flex-container">
           <div class="question-text">
-            <span>{{bankDetails.bank_id}}:&nbsp;</span>
-            <span>{{bankDetails.bank_id}}</span>
-          </div>
-          
-          <div class="flex-column">
-            <span class="votes">{{bankDetails.bank_id}} Upvotes</span>
-            <span class="votes">{{bankDetails.bank_id}} Downvotes</span>
+            <div>Bank ID:{{bankDetails.bank_id}}</div>
+            <div>Bank Name: {{bankDetails.bank_id}}</div>
+            <div>Bank IFSC: {{bankDetails.ifsc}}</div>
+            <div>Bank Branch: {{bankDetails.branch}}</div>
+            <div>Bank Address: {{bankDetails.address}}</div>
+            <div>Bank City: {{bankDetails.city}}</div>
+            <div>Bank District: {{bankDetails.district}}</div>
+            <div>Bank State: {{bankDetails.state}}</div>
           </div>
         </div>
       </div>

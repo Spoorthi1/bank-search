@@ -18,6 +18,8 @@ export class BankListComponent implements OnInit {
   dataSource = new MatTableDataSource<any>(this.ELEMENT_DATA);
   banks: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  // Get the list of banks and add it to ELEMENT_DATA to be displayed as table
   @Input() set bankList(list: Bank[]) {
     this.banks = list;
     list.forEach((el) => {
@@ -30,19 +32,24 @@ export class BankListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  // Filter is applied based on what the user is searching
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  // On click of any row the user is routed to /bank-details/:id page
   emitRow(row) {
     const index = this.banks.findIndex((bank) => row.ifsc === bank.ifsc);
     if (index >= 0) {
       const url = '/bank-details/' + this.banks[index].ifsc;
-      // this.bankEmitter.emit(this.banks[index]);
       this.router.navigate([url]);
     }
   }
 
+  // saving bank as favorite
+  // 1. checks if localStorage is empty, then adds the item
+  // 2. if localStorage is not empty then checks if item already present, then deletes it assuming that user unchecked the checkbox
+  // 3. if localStorage is not empty then checks if item not present, then adds the item in the array and updates the localStorage
   saveFavorite($event, row) {
     console.log(row);
     if (localStorage.getItem('favorite-banks')) {
@@ -62,6 +69,8 @@ export class BankListComponent implements OnInit {
     }
   }
 
+  // Returns the status of checkbox. If the bank is added as favorite(thereby added in localstorage),
+  // then returns true else returns false
   isSelected(row) {
     if (localStorage.getItem('favorite-banks')) {
       const fbanks = JSON.parse(localStorage.getItem('favorite-banks'));

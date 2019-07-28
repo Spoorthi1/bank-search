@@ -17,6 +17,7 @@ export class BankDetailsComponent implements OnInit {
   constructor(private bankService: BankService,
     private router: ActivatedRoute) { }
 
+  // Get the list of banks and get the ifsc code from the route and filter the bank list based on ifsc
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.ifsc = params['ifsc'];

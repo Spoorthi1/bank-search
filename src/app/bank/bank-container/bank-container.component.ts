@@ -12,6 +12,7 @@ export class BankContainerComponent implements OnInit {
   bankList$: Observable<Bank[]>;
   constructor(private bankService: BankService) { }
 
+  // get all the banks on ngOnInit by making a service call
   ngOnInit() {
     this.bankList$ = this.bankService.getBankList()
     .pipe(
