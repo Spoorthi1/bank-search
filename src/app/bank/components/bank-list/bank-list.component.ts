@@ -26,6 +26,8 @@ export class BankListComponent implements OnInit {
       this.ELEMENT_DATA.push({ bankId: el.bank_id, ifsc: el.ifsc, branch: el.branch, bankName: el.bank_name, address: el.address });
     });
   }
+
+  @Input() city: string;
   @Output() bankEmitter: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class BankListComponent implements OnInit {
   emitRow(row) {
     const index = this.banks.findIndex((bank) => row.ifsc === bank.ifsc);
     if (index >= 0) {
-      const url = '/bank-details/' + this.banks[index].ifsc;
+      const url = '/bank-details/' + this.city + '/' + this.banks[index].ifsc;
       this.router.navigate([url]);
     }
   }
@@ -85,4 +87,8 @@ export class BankListComponent implements OnInit {
     }
   }
 
+  // sendCity($event) {
+  //   this.city = $event;
+  //   this.bankEmitter.emit($event);
+  // }
 }

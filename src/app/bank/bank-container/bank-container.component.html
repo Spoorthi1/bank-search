@@ -1,9 +1,18 @@
 <div>
-  <div class="label">
-    Select each row to view the bank details. Click on checkbox to add to favorites.
-    (Please use logout button to clear local storage)
+  <div>
+      <mat-form-field>
+          <mat-select placeholder="City" (selectionChange)="sendCity($event)">
+            <mat-option *ngFor="let option of dropDownOption" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
   </div>
   <div *ngIf="(bankList$ | async) as bankList">
-    <app-bank-list [bankList]="bankList"></app-bank-list>
+      <div class="label">
+          Select each row to view the bank details. Click on checkbox to add to favorites.
+          (Please use logout button to clear local storage)
+        </div>
+    <app-bank-list [bankList]="bankList" [city]="city"></app-bank-list>
   </div>
 </div>

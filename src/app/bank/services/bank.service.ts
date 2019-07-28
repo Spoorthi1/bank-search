@@ -15,20 +15,20 @@ export class BankService {
 
   /**
   * @method
-  * service to get the question list
+  * service to get the bank list
   */
-  getBankList = () => {
-    const banksFromCache = this.responseCache.get(helpers.getBankList);
+  getBankList = (city: string) => {
+    const banksFromCache = this.responseCache.get(helpers.getBankList + city);
     if (banksFromCache) {
       return of(banksFromCache);
     }
     // const response = this.http.get<Bank[]>(helpers.getBankList);
     // response.subscribe(banks => this.responseCache.set(helpers.getBankList, banks));
     // return response;
-    return this.http.get<Bank[]>(helpers.getBankList)
+    return this.http.get<Bank[]>(helpers.getBankList + city)
       .pipe(
         map(banks => {
-          this.responseCache.set(helpers.getBankList, banks);
+          this.responseCache.set(helpers.getBankList + city, banks);
           return banks;
         }),
         catchError((error) => {

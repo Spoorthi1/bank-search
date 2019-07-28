@@ -12,6 +12,7 @@ import { BankService } from '../../services/bank.service';
 })
 export class BankDetailsComponent implements OnInit {
   ifsc: string;
+  city: string;
   bankList$: Observable<Bank>;
   noData = false;
   constructor(private bankService: BankService,
@@ -21,11 +22,12 @@ export class BankDetailsComponent implements OnInit {
   ngOnInit() {
     this.router.params.subscribe(params => {
       this.ifsc = params['ifsc'];
+      this.city = params['city'];
       console.log(this.ifsc);
     });
 
-    if (this.ifsc) {
-    this.bankList$ = this.bankService.getBankList()
+    if (this.ifsc && this.city) {
+    this.bankList$ = this.bankService.getBankList(this.city)
     .pipe(
       map((res: Bank[]) => {
         const bankDetails = res.find((bank) => bank.ifsc === this.ifsc);

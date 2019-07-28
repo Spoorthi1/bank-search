@@ -10,11 +10,17 @@ import { Bank } from '../models/bank';
 })
 export class BankContainerComponent implements OnInit {
   bankList$: Observable<Bank[]>;
+  dropDownOption: string[] = ['MUMBAI', 'BANGALORE'];
+  city: string;
   constructor(private bankService: BankService) { }
 
   // get all the banks on ngOnInit by making a service call
   ngOnInit() {
-    this.bankList$ = this.bankService.getBankList()
+  }
+
+  sendCity($event) {
+    this.city = $event.value;
+    this.bankList$ = this.bankService.getBankList(this.city)
     .pipe(
       map((res: Bank[]) => {
         return res;
@@ -25,5 +31,4 @@ export class BankContainerComponent implements OnInit {
       })
     );
   }
-
 }

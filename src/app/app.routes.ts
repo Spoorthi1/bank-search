@@ -9,7 +9,7 @@ export const bankRoutes: Routes = [
         component: BankContainerComponent,
     },
     {
-        path: 'bank-details/:ifsc',
+        path: 'bank-details/:city/:ifsc',
         component: BankDetailsComponent
     },
     { path: '', redirectTo: 'bank-list', pathMatch: 'full' },

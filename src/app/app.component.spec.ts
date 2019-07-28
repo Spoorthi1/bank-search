@@ -1,5 +1,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatToolbarModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatCardModule, MatIconModule, MatButtonModule
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { bankRoutes } from 'src/app/app.routes';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BankModule } from 'src/app/bank/bank.module';
+import { APP_BASE_HREF } from '@angular/common';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +17,24 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [
+        BrowserModule,
+        MatToolbarModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        RouterModule.forRoot(
+          bankRoutes
+        ),
+        HttpClientModule,
+        MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        BankModule
+      ],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
     }).compileComponents();
   }));
 
@@ -22,10 +50,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('bank-search');
   });
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to bank-search!');
-  });
 });
