@@ -22,9 +22,11 @@ export class BankListComponent implements OnInit {
   // Get the list of banks and add it to ELEMENT_DATA to be displayed as table
   @Input() set bankList(list: Bank[]) {
     this.banks = list;
+    this.ELEMENT_DATA.splice(0, this.ELEMENT_DATA.length);
     list.forEach((el) => {
       this.ELEMENT_DATA.push({ bankId: el.bank_id, ifsc: el.ifsc, branch: el.branch, bankName: el.bank_name, address: el.address });
     });
+    this.dataSource.data = this.ELEMENT_DATA;
   }
 
   @Input() city: string;
